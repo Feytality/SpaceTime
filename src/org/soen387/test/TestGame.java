@@ -1,6 +1,5 @@
 package org.soen387.test;
 
-
 import java.io.IOException;
 import java.util.ArrayList;
 import java.util.List;
@@ -34,6 +33,7 @@ import org.w3c.dom.Document;
 import org.xml.sax.SAXException;
 
 public class TestGame {
+	
 	CloseableHttpClient httpclient = HttpClients.createDefault();
 	public final String BASE_URL = FieldMap.current.get().get("BASE_URL");
 	XPath xPath =  XPathFactory.newInstance().newXPath();
@@ -65,7 +65,7 @@ public class TestGame {
 		}
 	}
 	
-	@Test
+	//@Test
 	public void testLogIn() throws SAXException, IOException, XpathException, XPathExpressionException {
 		Document d = login("fred", "fred");
 		
@@ -79,7 +79,7 @@ public class TestGame {
 		assertSuccess(d);
 	}
 	
-	@Test
+	//@Test
 	public void testLogOut() throws SAXException, IOException, XpathException, XPathExpressionException {
 		register("fred", "fred", "fred", "fredson", "fred@fred.com");
 		Document d = login("fred", "fred");
@@ -90,7 +90,7 @@ public class TestGame {
 		assertSuccess(d);
 	}
 	
-	@Test
+	//@Test
 	public void testRegister() throws SAXException, IOException, XpathException, XPathExpressionException {
 		Document d = register("bob", "bob", "bob", "bobson", "bob@fred.com");
 		long id = getPlayerId(d);
@@ -104,7 +104,7 @@ public class TestGame {
 		XMLAssert.assertXpathExists("/game/players/player[@id='" + id + "']", d);
 	}
 	
-	@Test
+	//@Test
 	public void testListPlayers() throws SAXException, IOException, XpathException, XPathExpressionException {
 		register("alice", "alice", "alice", "aliceson", "alice@fred.com");
 		register("dora", "dora", "dora", "dorason", "dora@fred.com");
@@ -115,7 +115,7 @@ public class TestGame {
 	}
 
 	
-	@Test
+	//@Test
 	public void testRecruitPilot() throws SAXException, IOException, XpathException, XPathExpressionException {
 		Document d = register("hal", "hal", "hal", "halson", "hal@fred.com");
 		login("hal", "hal");
@@ -172,7 +172,7 @@ public class TestGame {
 	
 
 	
-	@Test
+	//@Test
 	public void testAddPilotToTeam() throws SAXException, IOException, XpathException, XPathExpressionException {
 		Document d = register("hal2", "hal2", "hal2", "halson2", "hal2@fred.com");
 		login("hal2", "hal2");
@@ -937,7 +937,6 @@ public class TestGame {
 		CloseableHttpResponse requestResponse = httpclient.execute(httpPost);
 		String response = EntityUtils.toString(requestResponse.getEntity());
 		String details = prettyPrintPost(httpPost, nvps, response);
-		System.out.println("*******whatats");
 		System.out.println(details);
 		requestResponse.close();
 		return XMLUnit.buildControlDocument(response);
@@ -1367,7 +1366,5 @@ public class TestGame {
 	public void assertFailure(Document d) throws XpathException, XPathExpressionException {
 		XMLAssert.assertXpathNotExists("/game/status[.=\"success\"]", d);
 	}
-
 	
 }
-

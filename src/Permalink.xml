@@ -14,6 +14,8 @@
 	<Permalink>
 		<pattern>st/Player/p(\d+)r(\d+)</pattern>
 		<dispatcher>org.soen387.app.dispatcher.ListPlayersDispatcher</dispatcher>
+		<attribute name="page"/>
+		<attribute name="row"/>
 	</Permalink>
 	<Permalink>
 		<pattern>st/Pilot/Recruit</pattern>
@@ -22,10 +24,13 @@
 	<Permalink>
 		<pattern>st/Pilot/p(\d+)r(\d+)</pattern>
 		<dispatcher>org.soen387.app.dispatcher.ListPilotsDispatcher</dispatcher>
+		<attribute name="page"/>
+		<attribute name="row"/>
 	</Permalink>
 	<Permalink>
 		<pattern>st/Pilot/(\d+)/Fire</pattern>
 		<dispatcher>org.soen387.app.dispatcher.FirePilotDispatcher</dispatcher>
+		<attribute name="id"/>
 	</Permalink>
 		<Permalink>
 		<pattern>st/Player/Retire</pattern>

@@ -6,22 +6,23 @@ import java.util.ArrayList;
 import java.util.List;
 
 import org.dsrg.soenea.domain.MapperException;
-import org.dsrg.soenea.domain.ObjectRemovedException;
 import org.dsrg.soenea.domain.mapper.DomainObjectNotFoundException;
 import org.dsrg.soenea.domain.mapper.IdentityMap;
+import org.dsrg.soenea.domain.producer.IdentityBasedProducer;
+import org.dsrg.soenea.domain.producer.IdentityBasedProducerMethod;
 import org.dsrg.soenea.uow.MissingMappingException;
 import org.dsrg.soenea.uow.UoW;
 import org.soen387.domain.model.pilot.IPilot;
 import org.soen387.domain.model.pilot.Pilot;
 import org.soen387.domain.model.pilot.PilotFactory;
 import org.soen387.domain.model.pilot.tdg.PilotFinder;
-import org.soen387.domain.model.pilot.tdg.PilotTDG;
 import org.soen387.domain.model.player.IPlayer;
 import org.soen387.domain.model.player.PlayerProxy;
 import org.soen387.domain.model.team.ITeam;
 import org.soen387.domain.model.team.tdg.TeamMembershipFinder;
 
-public class PilotInputMapper {
+public class PilotInputMapper implements IdentityBasedProducer {
+	@IdentityBasedProducerMethod
 	public static Pilot find(long id) throws SQLException, MissingMappingException, MapperException {
 
 		if(IdentityMap.has(id, Pilot.class)) return IdentityMap.get(id, Pilot.class);
