@@ -1,5 +1,8 @@
 package org.soen387.domain.command;
 
+import java.sql.SQLException;
+
+import org.dsrg.soenea.domain.MapperException;
 import org.dsrg.soenea.domain.command.CommandError;
 import org.dsrg.soenea.domain.command.CommandException;
 import org.dsrg.soenea.domain.command.impl.ValidatorCommand;
@@ -8,7 +11,9 @@ import org.dsrg.soenea.domain.command.validator.source.IdentityBasedProducer;
 import org.dsrg.soenea.domain.command.validator.source.Source;
 import org.dsrg.soenea.domain.command.validator.source.impl.PermalinkSource;
 import org.dsrg.soenea.domain.helper.Helper;
+import org.dsrg.soenea.domain.mapper.LostUpdateException;
 import org.dsrg.soenea.domain.user.User;
+import org.dsrg.soenea.uow.MissingMappingException;
 import org.soen387.domain.model.pilot.Pilot;
 import org.soen387.domain.model.pilot.mapper.PilotInputMapper;
 import org.soen387.domain.model.pilot.mapper.PilotOutputMapper;
@@ -21,37 +26,32 @@ public class FirePilotCommand extends ValidatorCommand {
 		super(helper);
 	}
 
-	/*
-	 * 
-	 * Firstly, the fields are public to make the reflection stuff easier! I'm
-	 * sure there's a better way, but I haven't gone back to fix it in years.
-	 * 
-	 * We want to pull from the capture group in PermaLink.xml. The attribute
-	 * name is the key for the source, but since it's the name of the command
-	 * field, ValidatorCommand assumes. SetInRequestAttribute is
-	 * self-explanatory.
-	 */
-	@Source(sources={PermalinkSource.class})
-	@IdentityBasedProducer(mapper = PilotInputMapper.class)
 	@SetInRequestAttribute
-	public long id;
+	@Source(sources=PermalinkSource.class)
+	//@IdentityBasedProducer(mapper=PilotInputMapper.class)
+	public Pilot id;
+	
 
 	@Override
 	public void process() throws CommandException {
 		try {
+			PermalinkSource ps = new PermalinkSource();
+			int id = ps.getData(helper, Integer.class, "id");
 			User u = (User) helper.getSessionAttribute("CurrentUser");
 			Player p = PlayerInputMapper.find(u);
+			System.out.println(p);
 			
 			System.out.println("###################  " + id);
 
 			if (p != null) {
 				Pilot pilot = PilotInputMapper.find(id);
+				System.out.println(pilot.getPlayer());
+				System.out.println(pilot.getId());
 				PilotOutputMapper.deleteStatic(pilot);
-			} else {
-				throw new Exception("Must be logged in to list pilots!");
+				System.out.println("deleted");
 			}
-
 		} catch (Exception e) {
+			e.printStackTrace();
 			throw new CommandException();
 		}
 	}

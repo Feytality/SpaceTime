@@ -22,9 +22,9 @@ import org.soen387.domain.model.team.ITeam;
 import org.soen387.domain.model.team.tdg.TeamMembershipFinder;
 
 public class PilotInputMapper implements IdentityBasedProducer {
+	
 	@IdentityBasedProducerMethod
 	public static Pilot find(long id) throws SQLException, MissingMappingException, MapperException {
-
 		if(IdentityMap.has(id, Pilot.class)) return IdentityMap.get(id, Pilot.class);
 
 		ResultSet rs = PilotFinder.find(id);

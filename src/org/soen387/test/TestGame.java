@@ -1,4 +1,4 @@
-package org.soen387.test;
+	package org.soen387.test;
 
 import java.io.IOException;
 import java.util.ArrayList;
@@ -130,7 +130,7 @@ public class TestGame {
 		assertSuccess(d);
 	}
 	
-	@Test
+	//@Test
 	public void testFirePilot() throws SAXException, IOException, XpathException, XPathExpressionException {
 		Document d = register("igor", "igor", "igor", "igorson", "igor@fred.com");
 		login("igor", "igor");
@@ -172,7 +172,7 @@ public class TestGame {
 	
 
 	
-	//@Test
+	@Test
 	public void testAddPilotToTeam() throws SAXException, IOException, XpathException, XPathExpressionException {
 		Document d = register("hal2", "hal2", "hal2", "halson2", "hal2@fred.com");
 		login("hal2", "hal2");
