@@ -3,7 +3,6 @@ package org.soen387.domain.command;
 import org.dsrg.soenea.domain.command.CommandException;
 import org.dsrg.soenea.domain.command.impl.ValidatorCommand;
 import org.dsrg.soenea.domain.command.impl.annotation.SetInRequestAttribute;
-import org.dsrg.soenea.domain.command.validator.source.Source;
 import org.dsrg.soenea.domain.command.validator.source.impl.PermalinkSource;
 import org.dsrg.soenea.domain.helper.Helper;
 import org.dsrg.soenea.domain.user.User;
@@ -20,14 +19,13 @@ public class FirePilotCommand extends ValidatorCommand {
 	}
 
 	@SetInRequestAttribute
-	@Source(sources=PermalinkSource.class)
-	public Pilot id;
+	public Pilot pilotId;
 	
 	@Override
 	public void process() throws CommandException {
 		try {
 			PermalinkSource ps = new PermalinkSource();
-			int id = ps.getData(helper, Integer.class, "id");
+			int id = ps.getData(helper, Integer.class, "pilotId");
 			User u = (User) helper.getSessionAttribute("CurrentUser");
 			Player p = PlayerInputMapper.find(u);		
 
@@ -43,4 +41,5 @@ public class FirePilotCommand extends ValidatorCommand {
 			throw new CommandException();
 		}
 	}
+	
 }

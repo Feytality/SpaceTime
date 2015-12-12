@@ -7,8 +7,6 @@ import org.dsrg.soenea.domain.command.validator.source.impl.PermalinkSource;
 import org.dsrg.soenea.domain.helper.Helper;
 import org.dsrg.soenea.domain.user.User;
 import org.soen387.domain.model.pilot.IPilot;
-import org.soen387.domain.model.pilot.Pilot;
-import org.soen387.domain.model.pilot.mapper.PilotInputMapper;
 import org.soen387.domain.model.player.Player;
 import org.soen387.domain.model.player.mapper.PlayerInputMapper;
 import org.soen387.domain.model.team.Team;

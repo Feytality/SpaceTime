@@ -23,8 +23,8 @@ public class ListPlayersCommand extends ValidatorCommand {
 	@Override
 	public void process() throws CommandException {
 		try {
-			int page; 
-			int rows; 
+			//int page; 
+		//	int rows; 
 			
 			List<IPlayer> players = PlayerInputMapper.findAll();
 			helper.setRequestAttribute("players", players);

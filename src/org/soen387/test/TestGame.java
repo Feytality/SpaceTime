@@ -130,7 +130,7 @@ public class TestGame {
 		assertSuccess(d);
 	}
 	
-	//@Test
+	@Test
 	public void testFirePilot() throws SAXException, IOException, XpathException, XPathExpressionException {
 		Document d = register("igor", "igor", "igor", "igorson", "igor@fred.com");
 		login("igor", "igor");
@@ -218,7 +218,7 @@ public class TestGame {
 		XMLAssert.assertXpathNotExists("/game/team/pilot[@id='" + pilotId + "'] ", d);
 	}
 	
-	@Test
+	//@Test
 	public void testChallengePlayerSuccess() throws SAXException, IOException, XpathException, XPathExpressionException {
 		Document d = register("marty", "marty", "marty", "marty", "marty@fred.com");
 		long marty = getPlayerId(d);

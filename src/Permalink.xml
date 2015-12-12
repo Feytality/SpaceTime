@@ -30,7 +30,7 @@
 	<Permalink>
 		<pattern>st/Pilot/(\d+)/Fire</pattern>
 		<dispatcher>org.soen387.app.dispatcher.FirePilotDispatcher</dispatcher>
-		<attribute name="id"/>
+		<attribute name="pilotId"/>
 	</Permalink>
 		<Permalink>
 		<pattern>st/Player/Retire</pattern>
