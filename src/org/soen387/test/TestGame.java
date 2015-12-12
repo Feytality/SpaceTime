@@ -65,7 +65,7 @@ public class TestGame {
 		}
 	}
 	
-	@Test
+	/*@Test
 	public void testLogIn() throws SAXException, IOException, XpathException, XPathExpressionException {
 		Document d = login("fred", "fred");
 		
@@ -452,7 +452,7 @@ public class TestGame {
 		
 	}
 	
-	/*//@Test
+	@Test
 	public void testViewChallengesPaging() throws SAXException, IOException, XpathException, XPathExpressionException {
 		Document d = register("marty", "marty", "marty", "marty", "marty@fred.com");
 		long marty = getPlayerId(d);
@@ -486,9 +486,9 @@ public class TestGame {
 		Assert.assertEquals("3", xPath.evaluate("count(//challenge)", d, XPathConstants.STRING));
 		XMLAssert.assertXpathExists("/game/challenges[@page='" + 1 + "' and @max='" + 5 + "']", d);
 		
-	}
+	}*/
 	
-	//@Test
+	@Test
 	public void testDeletePlayer() throws SAXException, IOException, XpathException, XPathExpressionException {
 		Document d = register("marty", "marty", "marty", "marty", "marty@fred.com");
 		d = register("biff", "biff", "biff", "biff", "biff@fred.com");
@@ -513,7 +513,7 @@ public class TestGame {
 		XMLAssert.assertXpathNotExists("/game/players/player[@firstName='biff']", d);
 	}
 	
-	//@Test
+	/*@Test
 	public void testViewNotifications() throws SAXException, IOException, XpathException, XPathExpressionException {
 		Document d = register("marty", "marty", "marty", "marty", "marty@fred.com");
 		long marty = getPlayerId(d);

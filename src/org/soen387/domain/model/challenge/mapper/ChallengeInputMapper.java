@@ -34,6 +34,14 @@ public class ChallengeInputMapper {
 		throw new DomainObjectNotFoundException("Could not create a Challenge with id \""+id+"\"");
 	}
 	
+	public static int count() throws SQLException {
+		ResultSet rs = ChallengeFinder.countRows();
+		if(rs.next()) {
+			return rs.getInt("total");
+		}
+		throw new SQLException();
+	}
+	
 	public static List<IChallenge> find(int page, int rows) throws MapperException {
         try {
             ResultSet rs = ChallengeFinder.findByPageRows(page, rows);

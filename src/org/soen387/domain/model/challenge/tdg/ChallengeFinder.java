@@ -4,6 +4,7 @@ import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
+import java.sql.Statement;
 
 import org.dsrg.soenea.service.threadLocal.DbRegistry;
 
@@ -32,4 +33,12 @@ public class ChallengeFinder {
 		ps.setInt(3, rows);
 		return ps.executeQuery();
 	}
+	
+	public static final String COUNT_ROWS = "SELECT COUNT(*) AS total FROM " + ChallengeTDG.TABLE_NAME + ";";
+	public static ResultSet countRows() throws SQLException {
+    	Connection con = DbRegistry.getDbConnection();
+		Statement stmnt = con.createStatement();
+		return stmnt.executeQuery(COUNT_ROWS);
+	}
+	
 }

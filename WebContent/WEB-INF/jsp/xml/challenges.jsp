@@ -5,7 +5,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <game>
 <status>success</status>
-<challenges>
+<challenges page="${pageInt}" max="${max}">
 <c:forEach items="${challenges}" var="challenge">
 <challenge id="${challenge.id}" status="${challenge.getStatusInt()}"  version="${challenge.version}">
 <challenger refid="${challenge.challenger.id}"/>

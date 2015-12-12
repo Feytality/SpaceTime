@@ -10,6 +10,7 @@ import org.dsrg.soenea.domain.helper.Helper;
 import org.dsrg.soenea.domain.user.User;
 import org.soen387.domain.model.challenge.IChallenge;
 import org.soen387.domain.model.challenge.mapper.ChallengeInputMapper;
+import org.soen387.domain.model.challenge.tdg.ChallengeFinder;
 import org.soen387.domain.model.player.Player;
 import org.soen387.domain.model.player.mapper.PlayerInputMapper;
 
@@ -31,7 +32,8 @@ public class ViewChallengesCommand extends ValidatorCommand {
 			PermalinkSource ps = new PermalinkSource();
 			int page = ps.getData(helper, Integer.class, "page");
 			int rows = ps.getData(helper, Integer.class, "rows");
-			
+			System.out.println("PRAGE " +page);
+			System.out.println("rows " + rows );
 			// Get the current player
 			User u = (User) helper.getSessionAttribute("CurrentUser");
 			Player p = PlayerInputMapper.find(u);
@@ -42,6 +44,9 @@ public class ViewChallengesCommand extends ValidatorCommand {
 					System.out.println("Challengee " + c.getChallengee());
 				}
 				helper.setRequestAttribute("challenges", challenges);
+				helper.setRequestAttribute("pageInt", page);
+				
+				helper.setRequestAttribute("max", ChallengeInputMapper.count());
 			}
 		} catch (Exception e) {
 			e.printStackTrace();
