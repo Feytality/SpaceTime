@@ -170,8 +170,6 @@ public class TestGame {
 		assertSuccess(d);
 	}
 	
-
-	
 	//@Test
 	public void testAddPilotToTeam() throws SAXException, IOException, XpathException, XPathExpressionException {
 		Document d = register("hal2", "hal2", "hal2", "halson2", "hal2@fred.com");
@@ -195,12 +193,11 @@ public class TestGame {
 		assertSuccess(d);
 	}
 	
-	//@Test
+	@Test
 	public void testRemovePilotFromTeam() throws SAXException, IOException, XpathException, XPathExpressionException {
 		Document d = register("jesse3", "jesse3", "jesse3", "jesseson3", "jesse3@fred.com");
 		login("jesse3", "jesse3");
 		
-
 		d = recruitPilot();
 		long pilotId = getPilotId(d);
 

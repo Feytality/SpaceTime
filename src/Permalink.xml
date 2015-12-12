@@ -50,4 +50,9 @@
 		<dispatcher>org.soen387.app.dispatcher.ViewTeamDispatcher</dispatcher>
 		<attribute name="teamId"/>
 	</Permalink>
+	<Permalink>
+		<pattern>st/Team/(\d+)/RemovePilot</pattern>
+		<dispatcher>org.soen387.app.dispatcher.RemovePilotFromTeamDispatcher</dispatcher>
+		<attribute name="teamId"/>
+	</Permalink>
 </permalinks>

@@ -12,16 +12,17 @@ import org.soen387.domain.model.player.Player;
 import org.soen387.domain.model.player.mapper.PlayerInputMapper;
 import org.soen387.domain.model.team.Team;
 import org.soen387.domain.model.team.mapper.TeamInputMapper;
+import org.soen387.domain.model.team.mapper.TeamOutputMapper;
 import org.soen387.domain.model.team.tdg.TeamMembershipTDG;
 
-public class AddPilotToTeamCommand extends ValidatorCommand {
+public class RemovePilotFromTeamCommand extends ValidatorCommand {
 
-	public AddPilotToTeamCommand(Helper helper) {
+	public RemovePilotFromTeamCommand(Helper helper) {
 		super(helper);
 	}
 
 	@SetInRequestAttribute
-	public Team teamId;
+	public Pilot pilotId;
 	
 	@Override
 	public void process() throws CommandException {
@@ -33,17 +34,26 @@ public class AddPilotToTeamCommand extends ValidatorCommand {
 			
 			// get the pilot id
 			long pilotId = helper.getLong("pilot");
+			long teamVersion = helper.getLong("version");
 
 			if (p != null) {
 				
 				Team team = TeamInputMapper.find(teamId);
 				Pilot pilot = PilotInputMapper.find(pilotId);
 			
-				// Add pilot to team, add team to pilot
-				pilot.addTeam(team);
-				team.addPilot(pilot);
+				// remove pilot from team, remove team from pilot
+				pilot.removeTeam(team);
+				team.removePilot(pilot);
+				team.setVersion(teamVersion);
 				
-				TeamMembershipTDG.insert(pilotId, teamId);
+				// update version
+				
+				// remove pilot-team association from table
+				TeamMembershipTDG.delete(pilotId, teamId);
+				
+				// update team to have new version
+				TeamOutputMapper.updateStatic(team);
+				
 				helper.setRequestAttribute("team", team);
 			}
 		} catch (Exception e) {
