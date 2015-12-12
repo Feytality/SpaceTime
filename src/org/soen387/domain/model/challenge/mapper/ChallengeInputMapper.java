@@ -6,7 +6,6 @@ import java.util.ArrayList;
 import java.util.List;
 
 import org.dsrg.soenea.domain.MapperException;
-import org.dsrg.soenea.domain.ObjectRemovedException;
 import org.dsrg.soenea.domain.mapper.DomainObjectNotFoundException;
 import org.dsrg.soenea.domain.mapper.IdentityMap;
 import org.dsrg.soenea.uow.MissingMappingException;
@@ -21,7 +20,9 @@ import org.soen387.domain.model.player.PlayerProxy;
 public class ChallengeInputMapper {
 	public static Challenge find(long id) throws SQLException, MissingMappingException, MapperException {
 
-		if(IdentityMap.has(id, Challenge.class)) return IdentityMap.get(id, Challenge.class);
+		if(IdentityMap.has(id, Challenge.class)) {
+			return IdentityMap.get(id, Challenge.class);
+		}
 
 		ResultSet rs = ChallengeFinder.find(id);
 		if(rs.next()) {
@@ -31,6 +32,24 @@ public class ChallengeInputMapper {
 			return c;
 		}
 		throw new DomainObjectNotFoundException("Could not create a Challenge with id \""+id+"\"");
+	}
+	
+	public static List<IChallenge> find(int page, int rows) throws MapperException {
+        try {
+            ResultSet rs = ChallengeFinder.findByPageRows(page, rows);
+            return buildCollection(rs);
+        } catch (SQLException e) {
+            throw new MapperException(e);
+        }
+	}
+	
+	public static List<IChallenge> findAll() throws MapperException {
+        try {
+            ResultSet rs = ChallengeFinder.findAll();
+            return buildCollection(rs);
+        } catch (SQLException e) {
+            throw new MapperException(e);
+        }
 	}
 
 	public static List<IChallenge> buildCollection(ResultSet rs)
@@ -50,14 +69,7 @@ public class ChallengeInputMapper {
 		    return l;
 		}
 
-	public static List<IChallenge> findAll() throws MapperException {
-        try {
-            ResultSet rs = ChallengeFinder.findAll();
-            return buildCollection(rs);
-        } catch (SQLException e) {
-            throw new MapperException(e);
-        }
-	}
+	
 	
 	private static Challenge buildChallenge(ResultSet rs) throws SQLException, MissingMappingException, MapperException  {
 

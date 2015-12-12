@@ -42,15 +42,7 @@ public class RegisterPlayer extends AbstractPageController implements Servlet {
 		setupRequest(request);
 		
 		try {
-			
-			//Do Stuff
-			/*
-		current.get().put("FIRSTNAME_PARAM", "firstName");
-		current.get().put("LASTNAME_PARAM", "lastName");
-		current.get().put("EMAIL_PARAM", "email");
-		current.get().put("USERNAME_PARAM", "username");
-		current.get().put("PASSWORD_PARAM", "password");
-			 */
+
 			String username = request.getParameter("username");
 			String password = request.getParameter("password");
 			String first = request.getParameter("firstName");

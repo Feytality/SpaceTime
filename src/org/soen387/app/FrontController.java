@@ -14,15 +14,10 @@ import org.dsrg.soenea.application.servlet.DispatcherServlet;
 import org.dsrg.soenea.application.servlet.dispatcher.Dispatcher;
 import org.dsrg.soenea.application.servlet.dispatcher.HttpServletHelper;
 import org.dsrg.soenea.application.servlet.service.DispatcherFactory;
-import org.dsrg.soenea.domain.MapperException;
 import org.dsrg.soenea.domain.helper.Helper;
-import org.dsrg.soenea.domain.user.GuestUser;
-import org.dsrg.soenea.domain.user.IUser;
 import org.dsrg.soenea.domain.user.User;
-import org.dsrg.soenea.domain.user.mapper.UserInputMapper;
 import org.dsrg.soenea.domain.user.mapper.UserOutputMapper;
 import org.dsrg.soenea.service.MySQLConnectionFactory;
-import org.dsrg.soenea.service.authorization.ApplicationAuthorizaton;
 import org.dsrg.soenea.service.registry.Registry;
 import org.dsrg.soenea.service.threadLocal.DbRegistry;
 import org.dsrg.soenea.service.threadLocal.ThreadLocalTracker;
@@ -109,11 +104,10 @@ public class FrontController extends DispatcherServlet {
 		Helper helper = null;
 		Dispatcher command = null;
 		String commandName = null;
-		IUser user = null;
+		//IUser user = null;
 
 		helper = new HttpServletHelper(request);
 		commandName = (String) helper.getAttribute("command");
-		System.out.println("@#%@#%^@#^^ " + commandName);
 
 		if (commandName == null)
 			commandName = "";
@@ -144,7 +138,6 @@ public class FrontController extends DispatcherServlet {
 			command.execute();
 
 		} catch (Exception e) {
-			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
 	}

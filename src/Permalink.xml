@@ -55,4 +55,19 @@
 		<dispatcher>org.soen387.app.dispatcher.RemovePilotFromTeamDispatcher</dispatcher>
 		<attribute name="teamId"/>
 	</Permalink>
+	<Permalink>
+		<pattern>st/Player/Retire</pattern>
+		<dispatcher>org.soen387.app.dispatcher.DeletePlayerDispatcher</dispatcher>
+	</Permalink>
+	<Permalink>
+		<pattern>st/Player/(\d+)/Challenge</pattern>
+		<dispatcher>org.soen387.app.dispatcher.ChallengePlayerSuccessDispatcher</dispatcher>
+		<attribute name="playerId"/>
+	</Permalink>
+	<Permalink>
+		<pattern>st/Challenge/p(\d+)r(\d+)</pattern>
+		<dispatcher>org.soen387.app.dispatcher.ViewChallengesDispatcher</dispatcher>
+		<attribute name="page"/>
+		<attribute name="rows"/>
+	</Permalink>
 </permalinks>

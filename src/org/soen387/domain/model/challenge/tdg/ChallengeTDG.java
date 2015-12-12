@@ -40,7 +40,7 @@ public class ChallengeTDG {
 	
 	
 	public static final String INSERT = "INSERT INTO " + TABLE_NAME + " (" + COLUMNS + ") "
-			+ "VALUES (?,?,?,?,?,?);";
+			+ "VALUES (?,?,?,?,?);";
 	public static int insert(long id, long version, long challenger, long challengee, String status) throws SQLException {
 		Connection con = DbRegistry.getDbConnection();
 		PreparedStatement ps = con.prepareStatement(INSERT);
