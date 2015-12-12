@@ -6,7 +6,7 @@
 <game>
 <status>success</status>
 <team id="${team.id}" version="${team.version}" name="${team.name}" player="${team.player.id}">
-<c:forEach items="${team.members }" var="pilot">
+<c:forEach items="${team.members}" var="pilot">
 <pilot id="${pilot.id}" version="${pilot.version}" name="${pilot.name}"></pilot>
 </c:forEach>
 </team>

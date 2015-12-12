@@ -6,9 +6,10 @@ import java.util.ArrayList;
 import java.util.List;
 
 import org.dsrg.soenea.domain.MapperException;
-import org.dsrg.soenea.domain.ObjectRemovedException;
 import org.dsrg.soenea.domain.mapper.DomainObjectNotFoundException;
 import org.dsrg.soenea.domain.mapper.IdentityMap;
+import org.dsrg.soenea.domain.producer.IdentityBasedProducer;
+import org.dsrg.soenea.domain.producer.IdentityBasedProducerMethod;
 import org.dsrg.soenea.uow.MissingMappingException;
 import org.dsrg.soenea.uow.UoW;
 import org.soen387.domain.model.pilot.IPilot;
@@ -21,7 +22,9 @@ import org.soen387.domain.model.team.TeamFactory;
 import org.soen387.domain.model.team.TeamProxy;
 import org.soen387.domain.model.team.tdg.TeamFinder;
 
-public class TeamInputMapper {
+public class TeamInputMapper implements IdentityBasedProducer {
+	
+	@IdentityBasedProducerMethod
 	public static Team find(long id) throws SQLException, MissingMappingException, MapperException {
 		if(IdentityMap.has(id, Team.class)) return IdentityMap.get(id, Team.class);
 		

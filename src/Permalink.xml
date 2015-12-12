@@ -36,4 +36,18 @@
 		<pattern>st/Player/Retire</pattern>
 		<dispatcher>org.soen387.app.dispatcher.DeletePlayerDispatcher</dispatcher>
 	</Permalink>
+	<Permalink>
+		<pattern>st/Team/Add</pattern>
+		<dispatcher>org.soen387.app.dispatcher.AddTeamDispatcher</dispatcher>
+	</Permalink>
+	<Permalink>
+		<pattern>st/Team/(\d+)/AddPilot</pattern>
+		<dispatcher>org.soen387.app.dispatcher.AddPilotToTeamDispatcher</dispatcher>
+		<attribute name="teamId"/>
+	</Permalink>
+	<Permalink>
+		<pattern>st/Team/(\d+)</pattern>
+		<dispatcher>org.soen387.app.dispatcher.ViewTeamDispatcher</dispatcher>
+		<attribute name="teamId"/>
+	</Permalink>
 </permalinks>

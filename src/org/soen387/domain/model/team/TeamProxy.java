@@ -18,7 +18,6 @@ public class TeamProxy extends DomainObjectProxy<Long, Team> implements ITeam {
 		try {
 			return TeamInputMapper.find(id);
 		} catch (Exception e) {
-			// It better be here! That null won't go over well!
 			e.printStackTrace();
 			return null;
 		}
@@ -47,6 +46,31 @@ public class TeamProxy extends DomainObjectProxy<Long, Team> implements ITeam {
 	@Override
 	public List<IPilot> getMembers() {
 		return getInnerObject().getMembers();
+	}
+
+	@Override
+	public void validateTeam() {
+		getInnerObject().validateTeam();
+	}
+
+	@Override
+	public void addPilot(IPilot pilot) {
+		getInnerObject().addPilot(pilot);
+	}
+
+	@Override
+	public void removePilot(IPilot pilot) {
+		getInnerObject().removePilot(pilot);
+	}
+
+	@Override
+	public List<IPilot> getPilots() {
+		return getInnerObject().getPilots();
+	}
+
+	@Override
+	public void setPilots(List<IPilot> pilots) {
+		getInnerObject().setPilots(pilots);
 	}
 
 }

@@ -1,10 +1,13 @@
 package org.soen387.domain.model.pilot;
 
+import java.util.List;
+
 import org.dsrg.soenea.domain.DomainObjectCreationException;
 import org.dsrg.soenea.domain.MapperException;
 import org.dsrg.soenea.domain.proxy.DomainObjectProxy;
 import org.soen387.domain.model.pilot.mapper.PilotInputMapper;
 import org.soen387.domain.model.player.IPlayer;
+import org.soen387.domain.model.team.ITeam;
 
 public class PilotProxy extends DomainObjectProxy<Long, Pilot> implements IPilot {
 
@@ -42,6 +45,26 @@ public class PilotProxy extends DomainObjectProxy<Long, Pilot> implements IPilot
 	@Override
 	public void setPlayer(IPlayer player) {
 		getInnerObject().setPlayer(player);
+	}
+
+	@Override
+	public List<ITeam> getTeams() {
+		return getInnerObject().getTeams();
+	}
+
+	@Override
+	public void setTeams(List<ITeam> teams) {
+		getInnerObject().setTeams(teams);
+	}
+
+	@Override
+	public void addTeam(ITeam team) {
+		getInnerObject().addTeam(team);
+	}
+
+	@Override
+	public void removeTeam(ITeam team) {
+		getInnerObject().removeTeam(team);
 	}
 
 }

@@ -172,7 +172,7 @@ public class TestGame {
 	
 
 	
-	@Test
+	//@Test
 	public void testAddPilotToTeam() throws SAXException, IOException, XpathException, XPathExpressionException {
 		Document d = register("hal2", "hal2", "hal2", "halson2", "hal2@fred.com");
 		login("hal2", "hal2");

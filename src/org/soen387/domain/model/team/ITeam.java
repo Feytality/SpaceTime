@@ -18,4 +18,13 @@ public interface ITeam extends IDomainObject<Long>{
 
 	public abstract List<IPilot> getMembers();
 
+	public abstract void validateTeam();
+	
+	public abstract void addPilot(IPilot pilot);
+	
+	public abstract void removePilot(IPilot pilot);
+	
+	public abstract List<IPilot> getPilots( );
+	
+	public abstract void setPilots(List<IPilot> pilots);
 }
