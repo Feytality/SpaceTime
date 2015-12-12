@@ -2,12 +2,10 @@ package org.soen387.domain.model.team.tdg;
 
 import java.sql.Connection;
 import java.sql.PreparedStatement;
-import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
 
 import org.dsrg.soenea.service.threadLocal.DbRegistry;
-import org.soen387.domain.model.pilot.tdg.PilotTDG;
 
 public class TeamMembershipTDG {
 	public static final String TABLE_NAME = "TeamMembership";

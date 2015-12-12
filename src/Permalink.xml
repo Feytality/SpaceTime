@@ -70,4 +70,9 @@
 		<attribute name="page"/>
 		<attribute name="rows"/>
 	</Permalink>
+	<Permalink>
+		<pattern>st/Challenge/(\d+)</pattern>
+		<dispatcher>org.soen387.app.dispatcher.RespondToChallengeDispatcher</dispatcher>
+		<attribute name="challengeId"/>
+	</Permalink>
 </permalinks>

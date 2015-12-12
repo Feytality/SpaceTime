@@ -7,7 +7,7 @@ public class Challenge extends DomainObject<Long> implements IChallenge{
 	private IPlayer challenger;
 	private IPlayer challengee;
 	private ChallengeStatus status;
-	
+		
 	public Challenge(long id, long version, IPlayer challenger, IPlayer challengee, ChallengeStatus status) {
 		super(id, version);
 		this.challenger = challenger;
@@ -39,5 +39,9 @@ public class Challenge extends DomainObject<Long> implements IChallenge{
 		this.status = status;
 	}
 	
+	public int getStatusInt() {
+		return status.ordinal();
+	}
+
 	
 }

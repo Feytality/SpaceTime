@@ -65,7 +65,7 @@ public class TestGame {
 		}
 	}
 	
-	//@Test
+	@Test
 	public void testLogIn() throws SAXException, IOException, XpathException, XPathExpressionException {
 		Document d = login("fred", "fred");
 		
@@ -79,7 +79,7 @@ public class TestGame {
 		assertSuccess(d);
 	}
 	
-	//@Test
+	@Test
 	public void testLogOut() throws SAXException, IOException, XpathException, XPathExpressionException {
 		register("fred", "fred", "fred", "fredson", "fred@fred.com");
 		Document d = login("fred", "fred");
@@ -90,7 +90,7 @@ public class TestGame {
 		assertSuccess(d);
 	}
 	
-	//@Test
+	@Test
 	public void testRegister() throws SAXException, IOException, XpathException, XPathExpressionException {
 		Document d = register("bob", "bob", "bob", "bobson", "bob@fred.com");
 		long id = getPlayerId(d);
@@ -104,7 +104,7 @@ public class TestGame {
 		XMLAssert.assertXpathExists("/game/players/player[@id='" + id + "']", d);
 	}
 	
-	//@Test
+	@Test
 	public void testListPlayers() throws SAXException, IOException, XpathException, XPathExpressionException {
 		register("alice", "alice", "alice", "aliceson", "alice@fred.com");
 		register("dora", "dora", "dora", "dorason", "dora@fred.com");
@@ -115,7 +115,7 @@ public class TestGame {
 	}
 
 	
-	//@Test
+	@Test
 	public void testRecruitPilot() throws SAXException, IOException, XpathException, XPathExpressionException {
 		Document d = register("hal", "hal", "hal", "halson", "hal@fred.com");
 		login("hal", "hal");
@@ -149,7 +149,7 @@ public class TestGame {
 		assertSuccess(d);
 	}
 
-	//@Test
+	@Test
 	public void testListPilots() throws SAXException, IOException, XpathException, XPathExpressionException {
 		Document d = register("elsa", "elsa", "elsa", "elsason", "elsa@fred.com");
 		login("elsa", "elsa");
@@ -170,7 +170,7 @@ public class TestGame {
 		assertSuccess(d);
 	}
 	
-	//@Test
+	@Test
 	public void testAddPilotToTeam() throws SAXException, IOException, XpathException, XPathExpressionException {
 		Document d = register("hal2", "hal2", "hal2", "halson2", "hal2@fred.com");
 		login("hal2", "hal2");
@@ -193,7 +193,7 @@ public class TestGame {
 		assertSuccess(d);
 	}
 	
-	//@Test
+	@Test
 	public void testRemovePilotFromTeam() throws SAXException, IOException, XpathException, XPathExpressionException {
 		Document d = register("jesse3", "jesse3", "jesse3", "jesseson3", "jesse3@fred.com");
 		login("jesse3", "jesse3");
@@ -218,7 +218,7 @@ public class TestGame {
 		XMLAssert.assertXpathNotExists("/game/team/pilot[@id='" + pilotId + "'] ", d);
 	}
 	
-	//@Test
+	@Test
 	public void testChallengePlayerSuccess() throws SAXException, IOException, XpathException, XPathExpressionException {
 		Document d = register("marty", "marty", "marty", "marty", "marty@fred.com");
 		long marty = getPlayerId(d);
@@ -239,7 +239,7 @@ public class TestGame {
 		XMLAssert.assertXpathExists("/game/challenges/challenge[@id='" + challenge + "']/challenger[@refid='" + biff + "']/../challengee[@refid='" + marty + "']", d);
 	}
 	
-	//@Test
+	@Test
 	public void testReChallengePlayerSuccess() throws SAXException, IOException, XpathException, XPathExpressionException {
 		Document d = register("marty", "marty", "marty", "marty", "marty@fred.com");
 		long marty = getPlayerId(d);
@@ -250,13 +250,13 @@ public class TestGame {
 		d = challengePlayer(marty);
 
 		assertSuccess(d);
-		
+
 		long challenge = getChallengeId(d);
 		
 		logout();
 		login("marty", "marty");
 		d = viewChallenges(1, 10);
-		
+
 		challenge = Long.parseLong((String)xPath.evaluate("/game/challenges/challenge"
 				+ "[@status='" + FieldMap.current.get().get("CHALLENGE_STATUS_ISSUED_ID") + "']"
 				+ "/challenger[@refid='" + biff + "']/../challengee[@refid='" + marty + "']/.."
@@ -279,7 +279,7 @@ public class TestGame {
 
 	}
 	
-	//@Test
+	@Test
 	public void testChallengePlayerFail() throws SAXException, IOException, XpathException, XPathExpressionException {
 		Document d = register("marty", "marty", "marty", "marty", "marty@fred.com");
 		long marty = getPlayerId(d);
@@ -415,7 +415,7 @@ public class TestGame {
 	
 	}
 	
-//	@Test
+	@Test
 	public void testViewChallenges() throws SAXException, IOException, XpathException, XPathExpressionException {
 		Document d = register("marty", "marty", "marty", "marty", "marty@fred.com");
 		long marty = getPlayerId(d);
@@ -452,7 +452,7 @@ public class TestGame {
 		
 	}
 	
-	//@Test
+	/*//@Test
 	public void testViewChallengesPaging() throws SAXException, IOException, XpathException, XPathExpressionException {
 		Document d = register("marty", "marty", "marty", "marty", "marty@fred.com");
 		long marty = getPlayerId(d);
@@ -858,7 +858,7 @@ public class TestGame {
 
 		assertSuccess(d);
 		
-	}
+	}*/
 	
 	public final String LOGIN = BASE_URL+FieldMap.current.get().get("LOGIN_PATH");
 	public Document login(String user, String pass) throws ParseException, ClientProtocolException, IOException, SAXException {

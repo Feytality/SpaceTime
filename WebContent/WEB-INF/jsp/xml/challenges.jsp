@@ -7,7 +7,7 @@
 <status>success</status>
 <challenges>
 <c:forEach items="${challenges}" var="challenge">
-<challenge id="${challenge.id}" status="${challenge.status}"  version="${challenge.version}">
+<challenge id="${challenge.id}" status="${challenge.getStatusInt()}"  version="${challenge.version}">
 <challenger refid="${challenge.challenger.id}"/>
 <challengee refid="${challenge.challengee.id}"/>
 </challenge>

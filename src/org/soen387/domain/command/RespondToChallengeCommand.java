@@ -1,52 +1,55 @@
 package org.soen387.domain.command;
 
-import java.util.List;
-
 import org.dsrg.soenea.domain.command.CommandException;
 import org.dsrg.soenea.domain.command.impl.ValidatorCommand;
 import org.dsrg.soenea.domain.command.impl.annotation.SetInRequestAttribute;
 import org.dsrg.soenea.domain.command.validator.source.impl.PermalinkSource;
 import org.dsrg.soenea.domain.helper.Helper;
 import org.dsrg.soenea.domain.user.User;
-import org.soen387.domain.model.challenge.IChallenge;
+import org.soen387.domain.model.challenge.Challenge;
+import org.soen387.domain.model.challenge.ChallengeFactory;
+import org.soen387.domain.model.challenge.ChallengeStatus;
 import org.soen387.domain.model.challenge.mapper.ChallengeInputMapper;
+import org.soen387.domain.model.challenge.mapper.ChallengeOutputMapper;
 import org.soen387.domain.model.player.Player;
 import org.soen387.domain.model.player.mapper.PlayerInputMapper;
 
-public class ViewChallengesCommand extends ValidatorCommand {
+public class RespondToChallengeCommand extends ValidatorCommand {
 
-	public ViewChallengesCommand(Helper helper) {
+	public RespondToChallengeCommand(Helper helper) {
 		super(helper);
 	}
 
 	@SetInRequestAttribute
-	public int page;
-	
-	@SetInRequestAttribute
-	public int rows;
-	
+	public Challenge challengeId;
+
 	@Override
 	public void process() throws CommandException {
 		try {
 			PermalinkSource ps = new PermalinkSource();
-			int page = ps.getData(helper, Integer.class, "page");
-			int rows = ps.getData(helper, Integer.class, "rows");
-			
+			int challengeId = ps.getData(helper, Integer.class, "challengeId");
+
 			// Get the current player
 			User u = (User) helper.getSessionAttribute("CurrentUser");
 			Player p = PlayerInputMapper.find(u);
-			
+
+			int status = helper.getInt("status");
+			long version = helper.getLong("version");
+
 			if (p != null) {
-				List<IChallenge> challenges = ChallengeInputMapper.find(page, rows);
-				for(IChallenge c : challenges) {
-					System.out.println("Challengee " + c.getChallengee());
-				}
-				helper.setRequestAttribute("challenges", challenges);
+				Challenge challenge = ChallengeInputMapper.find(challengeId);
+				ChallengeStatus challengeStatus = ChallengeStatus.values()[status];
+				challenge.setStatus(challengeStatus);
+				ChallengeFactory.createClean(challenge.getId(), version,
+						challenge.getChallenger(), challenge.getChallengee(),
+						challengeStatus);
+				ChallengeOutputMapper.updateStatic(challenge);
+				helper.setRequestAttribute("challenge", challenge);
 			}
 		} catch (Exception e) {
 			e.printStackTrace();
 			throw new CommandException();
 		}
 	}
-	
+
 }
