@@ -10,7 +10,6 @@ import org.dsrg.soenea.domain.helper.Helper;
 import org.dsrg.soenea.domain.user.User;
 import org.soen387.domain.model.challenge.IChallenge;
 import org.soen387.domain.model.challenge.mapper.ChallengeInputMapper;
-import org.soen387.domain.model.challenge.tdg.ChallengeFinder;
 import org.soen387.domain.model.player.Player;
 import org.soen387.domain.model.player.mapper.PlayerInputMapper;
 

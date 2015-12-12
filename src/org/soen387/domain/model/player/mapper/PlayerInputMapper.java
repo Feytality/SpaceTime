@@ -6,7 +6,6 @@ import java.util.ArrayList;
 import java.util.List;
 
 import org.dsrg.soenea.domain.MapperException;
-import org.dsrg.soenea.domain.ObjectRemovedException;
 import org.dsrg.soenea.domain.mapper.DomainObjectNotFoundException;
 import org.dsrg.soenea.domain.mapper.IdentityMap;
 import org.dsrg.soenea.domain.user.IUser;
@@ -17,7 +16,6 @@ import org.soen387.domain.model.player.IPlayer;
 import org.soen387.domain.model.player.Player;
 import org.soen387.domain.model.player.PlayerFactory;
 import org.soen387.domain.model.player.tdg.PlayerFinder;
-import org.soen387.domain.model.player.tdg.PlayerTDG;
 
 public class PlayerInputMapper {
 	public static Player find(long id) throws SQLException, MissingMappingException, MapperException {
@@ -59,6 +57,15 @@ public class PlayerInputMapper {
 			throw new MapperException(e);
 		}
 	}
+	
+	public static List<IPlayer> findAll() throws MapperException {
+		try {
+			ResultSet rs = PlayerFinder.findAll();
+			return buildCollection(rs);
+		} catch (SQLException e) {
+			throw new MapperException(e);
+		}
+	}
 
 	public static List<IPlayer> buildCollection(ResultSet rs)
 			throws SQLException, MissingMappingException, MapperException {
@@ -79,17 +86,8 @@ public class PlayerInputMapper {
 		return l;
 	}
 
-	public static List<IPlayer> findAll() throws MapperException {
-		try {
-			ResultSet rs = PlayerFinder.findAll();
-			return buildCollection(rs);
-		} catch (SQLException e) {
-			throw new MapperException(e);
-		}
-	}
 
 	private static Player buildPlayer(ResultSet rs) throws SQLException, MissingMappingException, MapperException {
-		// TODO Auto-generated method stub
 		return PlayerFactory.createClean(rs.getLong("id"), rs.getInt("version"), rs.getString("firstname"),
 				rs.getString("lastname"), rs.getString("email"), new UserProxy(rs.getLong("user")));
 	}

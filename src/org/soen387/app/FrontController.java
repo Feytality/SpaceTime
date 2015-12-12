@@ -48,7 +48,6 @@ public class FrontController extends DispatcherServlet {
 	 */
 	public FrontController() {
 		super();
-		// TODO Auto-generated constructor stub
 	}
 
 	@Override
@@ -79,17 +78,15 @@ public class FrontController extends DispatcherServlet {
 		MySQLConnectionFactory f = new MySQLConnectionFactory(null, null, null, null);
 		try {
 			f.defaultInitialization();
-		} catch (SQLException e2) {
-			// TODO Auto-generated catch block
-			e2.printStackTrace();
+		} catch (SQLException e) {
+			e.printStackTrace();
 		}
 		DbRegistry.setConFactory(f);
 		String tablePrefix;
 		try {
 			tablePrefix = Registry.getProperty("mySqlTablePrefix");
-		} catch (Exception e1) {
-			// TODO Auto-generated catch block
-			e1.printStackTrace();
+		} catch (Exception e) {
+			e.printStackTrace();
 			tablePrefix = "";
 		}
 		if (tablePrefix == null) {
@@ -104,7 +101,6 @@ public class FrontController extends DispatcherServlet {
 		Helper helper = null;
 		Dispatcher command = null;
 		String commandName = null;
-		//IUser user = null;
 
 		helper = new HttpServletHelper(request);
 		commandName = (String) helper.getAttribute("command");
@@ -112,26 +108,8 @@ public class FrontController extends DispatcherServlet {
 		if (commandName == null)
 			commandName = "";
 
-//		user = (IUser) helper.getSessionAttribute("CurrentUser");
-//
-//		if (user == null) {
-//			user = new GuestUser();
-//			request.getSession(true).setAttribute("CurrentUser", user);
-//		}
-
 		try {
-
-//			if (!(user instanceof GuestUser)) {
-//				user = UserInputMapper.find(user.getId());
-//				request.getSession(true).setAttribute("CurrentUser", user);
-//			}
-//
-//			if (!ApplicationAuthorizaton.hasAuthority(commandName, user.getRoles(),
-//					ApplicationAuthorizaton.RequestMethod.valueOf(request.getMethod()))) {
-//				throw new Exception("Access Denied to " + commandName + " for user " + user.getUsername());
-//			}
-
-			System.out.println("COMMAND: " + commandName);
+			System.out.println("cmd: " + commandName);
 			
 			command = DispatcherFactory.getInstance(commandName);
 			command.init(request, response);

@@ -24,13 +24,12 @@ public class ChallengeFinder {
 		return ps.executeQuery();
 	}
 	
-	public static final String FIND_BY_PAGE_ROWS = "SELECT " + ChallengeTDG.COLUMNS + " FROM " + ChallengeTDG.TABLE_NAME + " WHERE id > (? - 1) * ? LIMIT ?;";
+	public static final String FIND_BY_PAGE_ROWS = "SELECT " + ChallengeTDG.COLUMNS + " FROM " + ChallengeTDG.TABLE_NAME + " LIMIT ?, ?;";
 	public static ResultSet findByPageRows(int page, int rows) throws SQLException {
     	Connection con = DbRegistry.getDbConnection();
 		PreparedStatement ps = con.prepareStatement(FIND_BY_PAGE_ROWS);
-		ps.setInt(1, page);
+		ps.setInt(1, (page*rows-rows));
 		ps.setInt(2, rows);
-		ps.setInt(3, rows);
 		return ps.executeQuery();
 	}
 	

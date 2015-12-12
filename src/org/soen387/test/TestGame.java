@@ -65,7 +65,7 @@ public class TestGame {
 		}
 	}
 	
-	/*@Test
+	@Test
 	public void testLogIn() throws SAXException, IOException, XpathException, XPathExpressionException {
 		Document d = login("fred", "fred");
 		
@@ -308,7 +308,7 @@ public class TestGame {
 		
 	}
 	
-	//@Test
+	@Test
 	public void testRespondToChallenge() throws SAXException, IOException, XpathException, XPathExpressionException {
 		Document d = register("marty", "marty", "marty", "marty", "marty@fred.com");
 		long marty = getPlayerId(d);
@@ -375,7 +375,7 @@ public class TestGame {
 		
 	}
 	
-	//@Test
+	@Test
 	public void testRespondToChallengeFailure() throws SAXException, IOException, XpathException, XPathExpressionException {
 		Document d = register("marty", "marty", "marty", "marty", "marty@fred.com");
 		long marty = getPlayerId(d);
@@ -486,7 +486,7 @@ public class TestGame {
 		Assert.assertEquals("3", xPath.evaluate("count(//challenge)", d, XPathConstants.STRING));
 		XMLAssert.assertXpathExists("/game/challenges[@page='" + 1 + "' and @max='" + 5 + "']", d);
 		
-	}*/
+	}
 	
 	@Test
 	public void testDeletePlayer() throws SAXException, IOException, XpathException, XPathExpressionException {
@@ -513,7 +513,7 @@ public class TestGame {
 		XMLAssert.assertXpathNotExists("/game/players/player[@firstName='biff']", d);
 	}
 	
-	/*@Test
+	@Test
 	public void testViewNotifications() throws SAXException, IOException, XpathException, XPathExpressionException {
 		Document d = register("marty", "marty", "marty", "marty", "marty@fred.com");
 		long marty = getPlayerId(d);
@@ -546,7 +546,7 @@ public class TestGame {
 		
 	}
 	
-	//@Test
+	@Test
 	public void testViewSeenNotifications() throws SAXException, IOException, XpathException, XPathExpressionException {
 		Document d = register("marty", "marty", "marty", "marty", "marty@fred.com");
 		long marty = getPlayerId(d);
@@ -570,7 +570,7 @@ public class TestGame {
 		Assert.assertEquals("0", xPath.evaluate("count(//challengeNotification)", d, XPathConstants.STRING));
 	}
 	
-	//@Test
+	@Test
 	public void testSeeNotification() throws SAXException, IOException, XpathException, XPathExpressionException {
 		Document d = register("marty", "marty", "marty", "marty", "marty@fred.com");
 		long marty = getPlayerId(d);
@@ -594,7 +594,7 @@ public class TestGame {
 		Assert.assertEquals("0", xPath.evaluate("count(//challengeNotification)", d, XPathConstants.STRING));
 	}
 	
-	//@Test
+	@Test
 	public void testDeleteNotification() throws SAXException, IOException, XpathException, XPathExpressionException {
 		Document d = register("marty", "marty", "marty", "marty", "marty@fred.com");
 		long marty = getPlayerId(d);
@@ -624,7 +624,7 @@ public class TestGame {
 		Assert.assertEquals("0", xPath.evaluate("count(//challengeNotification)", d, XPathConstants.STRING));
 	}
 
-	//@Test
+	@Test
 	public void testWithdawChallenge() throws SAXException, IOException, XpathException, XPathExpressionException {
 		Document d = register("marty", "marty", "marty", "marty", "marty@fred.com");
 		long marty = getPlayerId(d);
@@ -646,7 +646,7 @@ public class TestGame {
 		
 	}
 	
-//	@Test
+	@Test
 	public void testWithdawChallengeNukesUnseenNotifications() throws SAXException, IOException, XpathException, XPathExpressionException {
 		Document d = register("marty", "marty", "marty", "marty", "marty@fred.com");
 		long marty = getPlayerId(d);
@@ -678,7 +678,7 @@ public class TestGame {
 		
 	}	
 	
-	//@Test
+	@Test
 	public void testViewTeam() throws SAXException, IOException, XpathException, XPathExpressionException {
 		Document d = register("nancy2", "nancy2", "nancy2", "nancyson2", "nancy2@fred.com");
 		login("nancy2", "nancy2");
@@ -712,7 +712,7 @@ public class TestGame {
 		
 	}
 	
-//	@Test
+	@Test
 	public void testListMatches() throws SAXException, IOException, XpathException, XPathExpressionException {
 		Document d = register("marty", "marty", "marty", "marty", "marty@fred.com");
 		long marty = getPlayerId(d);
@@ -787,7 +787,7 @@ public class TestGame {
 		
 	}
 	
-//	@Test
+	@Test
 	public void testListPlayerMatches() throws SAXException, IOException, XpathException, XPathExpressionException {
 		Document d = register("marty", "marty", "marty", "marty", "marty@fred.com");
 		long marty = getPlayerId(d);
@@ -858,7 +858,7 @@ public class TestGame {
 
 		assertSuccess(d);
 		
-	}*/
+	}
 	
 	public final String LOGIN = BASE_URL+FieldMap.current.get().get("LOGIN_PATH");
 	public Document login(String user, String pass) throws ParseException, ClientProtocolException, IOException, SAXException {

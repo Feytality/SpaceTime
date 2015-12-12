@@ -10,9 +10,6 @@ import org.dsrg.soenea.domain.MapperException;
 import org.dsrg.soenea.domain.command.CommandException;
 import org.dsrg.soenea.uow.UoW;
 import org.soen387.domain.command.DeletePlayerCommand;
-import org.soen387.domain.command.FirePilotCommand;
-import org.soen387.domain.command.ListPilotsCommand;
-import org.soen387.domain.command.ListPlayersCommand;
 
 public class DeletePlayerDispatcher extends Dispatcher {
 

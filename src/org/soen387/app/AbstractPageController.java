@@ -11,8 +11,6 @@ import javax.servlet.http.HttpServletResponse;
 import org.dsrg.soenea.application.servlet.DispatcherServlet;
 import org.dsrg.soenea.application.servlet.Servlet;
 import org.dsrg.soenea.domain.MapperException;
-import org.dsrg.soenea.domain.ObjectRemovedException;
-import org.dsrg.soenea.domain.mapper.DomainObjectNotFoundException;
 import org.dsrg.soenea.domain.user.User;
 import org.dsrg.soenea.domain.user.mapper.UserOutputMapper;
 import org.dsrg.soenea.service.MySQLConnectionFactory;
@@ -74,16 +72,14 @@ public abstract class AbstractPageController extends Servlet {
 		MySQLConnectionFactory f = new MySQLConnectionFactory(null, null, null, null);
 		try {
 			f.defaultInitialization();
-		} catch (SQLException e2) {
-			// TODO Auto-generated catch block
-			e2.printStackTrace();
+		} catch (SQLException e) {
+			e.printStackTrace();
 		}
 		DbRegistry.setConFactory(f);
 		String tablePrefix;
 		try {
 			tablePrefix = Registry.getProperty("mySqlTablePrefix");
 		} catch (Exception e1) {
-			// TODO Auto-generated catch block
 			e1.printStackTrace();
 			tablePrefix = "";
 		}

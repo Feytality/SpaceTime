@@ -14,53 +14,55 @@ import org.soen387.domain.model.team.tdg.TeamTDG;
 public class Teardown {
 
 	public static void main(String[] args) throws InterruptedException {
-		
+		boolean noDebug = true;
 		AbstractPageController.setupDb();
-		try {
-			PlayerTDG.dropTable();
-		} catch (SQLException e) {
-			e.printStackTrace();
-		}
-		try {
-			UserTDG.dropTable();
-		} catch (SQLException e) {
-			e.printStackTrace();
-		}
+		if (noDebug) {
+			try {
+				PlayerTDG.dropTable();
+			} catch (SQLException e) {
+				e.printStackTrace();
+			}
+			try {
+				UserTDG.dropTable();
+			} catch (SQLException e) {
+				e.printStackTrace();
+			}
 
-		try {
-			UserTDG.dropUserRoleTable();
-		} catch (SQLException e) {
-			e.printStackTrace();
-		}
+			try {
+				UserTDG.dropUserRoleTable();
+			} catch (SQLException e) {
+				e.printStackTrace();
+			}
 
-		try {
-			TeamTDG.dropTable();
-		} catch (SQLException e) {
-			e.printStackTrace();
-		}
+			try {
+				TeamTDG.dropTable();
+			} catch (SQLException e) {
+				e.printStackTrace();
+			}
 
-		try {
-			PilotTDG.dropTable();
-		} catch (SQLException e) {
-			e.printStackTrace();
-		}
+			try {
+				PilotTDG.dropTable();
+			} catch (SQLException e) {
+				e.printStackTrace();
+			}
 
-		try {
-			TeamMembershipTDG.dropTable();
-		} catch (SQLException e) {
-			e.printStackTrace();
-		}
+			try {
+				TeamMembershipTDG.dropTable();
+			} catch (SQLException e) {
+				e.printStackTrace();
+			}
 
-		try {
-			ChallengeTDG.dropTable();
-		} catch (SQLException e) {
-			e.printStackTrace();
-		}
+			try {
+				ChallengeTDG.dropTable();
+			} catch (SQLException e) {
+				e.printStackTrace();
+			}
 
-		try {
-			NotificationTDG.dropTable();
-		} catch (SQLException e) {
-			e.printStackTrace();
+			try {
+				NotificationTDG.dropTable();
+			} catch (SQLException e) {
+				e.printStackTrace();
+			}
 		}
 	}
 

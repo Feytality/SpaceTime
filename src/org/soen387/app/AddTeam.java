@@ -13,7 +13,6 @@ import org.dsrg.soenea.service.threadLocal.DbRegistry;
 import org.soen387.domain.model.pilot.IPilot;
 import org.soen387.domain.model.player.Player;
 import org.soen387.domain.model.team.Team;
-import org.soen387.domain.model.team.mapper.TeamInputMapper;
 import org.soen387.domain.model.team.mapper.TeamOutputMapper;
 import org.soen387.domain.model.team.tdg.TeamTDG;
 
@@ -38,11 +37,6 @@ public class AddTeam extends AbstractPageController implements Servlet {
 		setupRequest(request);
 		
 		try {
-			
-			// Do Stuff
-			/*
-			 * current.get().put("TEAM_NAME", "teamname");
-			 */
 			Player p = getCurrentPlayer(request);
 			if (p != null) {
 
@@ -58,10 +52,8 @@ public class AddTeam extends AbstractPageController implements Servlet {
 				throw new Exception("Must be logged in to list pilots!");
 			}
 			
-			//Commit
 			DbRegistry.getDbConnection().commit();
 			
-			//Forward to a jsp, make sure you fill it in properly
 			request.getRequestDispatcher("/WEB-INF/jsp/xml/team.jsp").forward(request, response);
 		} catch (Exception e) {
 			forwardError(request, response, e.getMessage());

@@ -5,11 +5,9 @@ import java.sql.SQLException;
 import org.dsrg.soenea.domain.MapperException;
 import org.dsrg.soenea.domain.mapper.GenericOutputMapper;
 import org.dsrg.soenea.domain.mapper.LostUpdateException;
-import org.soen387.domain.model.pilot.tdg.PilotTDG;
 import org.soen387.domain.model.player.IPlayer;
 import org.soen387.domain.model.player.Player;
 import org.soen387.domain.model.player.tdg.PlayerTDG;
-import org.soen387.domain.model.team.tdg.TeamTDG;
 
 public class PlayerOutputMapper extends GenericOutputMapper<Long, Player> {
 	public static void insertStatic(IPlayer p) throws SQLException {
@@ -23,14 +21,12 @@ public class PlayerOutputMapper extends GenericOutputMapper<Long, Player> {
 	}
 	
 	public static void deleteStatic(IPlayer p) throws SQLException, LostUpdateException {
+		System.out.println("id   " + p.getId() + "   version   " + p.getVersion());
 		int count = PlayerTDG.delete(p.getId(), p.getVersion());
 		if(count==0) throw new LostUpdateException("Lost Update deleting player with id " + p.getId());
-		//
-		// What's the process for deleting a Player... do we need to delete users and games?
-		// More on that when we discuss referential integrity.
-		//
-		TeamTDG.deleteByPlayer(p.getId());
-		PilotTDG.deleteByPlayer(p.getId());
+
+		//TeamTDG.deleteByPlayer(p.getId());
+		//PilotTDG.deleteByPlayer(p.getId());
 	}
 	
 	@Override
